@@ -1,0 +1,21 @@
+---
+event: 2017 Mayoral Election
+levels:
+- shape_type: Country
+  file: json/geo_country_2017_simplified.geojson
+  parent_id: ''
+  parent_name: ''
+  common_id: Georgia
+  common_name: Georgia
+- shape_type: District
+  file: json/geo_district_merged_tbilisi_2017_simplified.geojson
+  parent_id: Georgia
+  parent_name: Georgia
+  common_id: properties['District']
+  common_name: properties['En_Name']
+- shape_type: Tbilisi District
+  file: json/geo_district_tbs_2017_simplified.geojson
+  parent_id: Georgia
+  parent_name: Georgia
+  common_id: properties['District']
+  common_name: properties['En_Name']

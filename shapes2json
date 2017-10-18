@@ -1,0 +1,19 @@
+#!/usr/bin/env ruby
+
+require_relative 'lib'
+
+# shapes2json path/to/shapefile
+
+path = ARGV.shift
+
+# check existence of path argument
+arg_check(path)
+
+# script dependencies
+dependencies = ['ogr2ogr']
+
+# check for depencies on local OS
+check_dependencies(dependencies)
+
+# convert shapefile to geojson format
+shape2json(path)
