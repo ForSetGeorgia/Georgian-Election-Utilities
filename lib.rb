@@ -76,7 +76,10 @@ def string_eval(string, properties)
   end
 end
 
-def district_id2name(id, features, id_label, name_label)
+def district_id2name(id, json_file, id_label, name_label)
+  data = File.open(json_file).read
+  json = JSON.parse(data)
+  features = json['features']
   features.each do |feature|
     properties = feature["properties"]
     if id = properties[id_label]

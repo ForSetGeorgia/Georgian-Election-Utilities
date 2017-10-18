@@ -13,9 +13,21 @@ levels:
   parent_name: Georgia
   common_id: properties['District']
   common_name: properties['En_Name']
+- shape_type: Precinct
+  file: json/geo_precinct_without_tbs_2017_simplified.geojson
+  parent_id: properties['District']
+  parent_name: properties['En_Name']
+  common_id: properties['Precinct']
+  common_name: properties['District'].to_s + "-" + properties['Precinct'].to_s
 - shape_type: Tbilisi District
   file: json/geo_district_tbs_2017_simplified.geojson
-  parent_id: Georgia
-  parent_name: Georgia
+  parent_id: '999'
+  parent_name: Tbilisi
   common_id: properties['District']
   common_name: properties['En_Name']
+- shape_type: Tbilisi Precinct
+  file: json/geo_tbs_precinct_2017_simplified.geojson
+  parent_id: properties['District']
+  parent_name: properties['En_Name']
+  common_id: properties['Precinct']
+  common_name: properties['District'].to_s + "-" + properties['Precinct'].to_s

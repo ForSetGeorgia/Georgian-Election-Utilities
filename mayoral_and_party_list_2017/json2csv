@@ -28,12 +28,11 @@ CSV.open('mayoral_and_party_list_2017.csv', 'wb', { :col_sep => "\t" }) do |csv|
     puts "Processing #{level["shape_type"]} data ..."
     data = File.open(level["file"]).read
     json = JSON.parse(data)
-    shape_type =
     features = json['features']
 
     features.each do |feature|
       properties = feature['properties']
-      geometry = feature['geometry']
+      geometry = feature['geometry'].to_json
       shape_type = level["shape_type"]
 
       parent_id = string_eval(level["parent_id"], properties)
