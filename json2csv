@@ -1,0 +1,49 @@
+#!/usr/bin/env ruby
+
+# merge json files into formatted csv file to upload
+# to election data portal https://data.electionsportal.ge/
+# format of exported csv file in root repo directory as
+# example.csv
+
+require 'yaml'
+require 'json'
+require 'csv'
+require_relative 'lib.rb'
+
+# import election yaml file
+yaml_file = File.open(ARGV.shift, "r").read
+election = YAML.load(yaml_file)
+output_filename = ARGV.shift
+
+event = election["event"]
+levels = election["levels"]
+
+# initiate export csv file
+CSV.open(output_filename, 'wb', { :col_sep => "\t" }) do |csv|
+
+  # add header
+  csv << %w(event	shape_type parent_id	parent_name	common_id	common_name	geometry)
+
+  levels.each do |level|
+
+    puts "Processing #{level["shape_type"]} data ..."
+    data = File.open(level["file"]).read
+    json = JSON.parse(data)
+    features = json['features']
+
+    features.each do |feature|
+      properties = feature['properties']
+      geometry = feature['geometry'].to_json
+      shape_type = level["shape_type"]
+
+      parent_id = string_eval(level["parent_id"], properties)
+      parent_name = string_eval(level["parent_name"], properties)
+      common_id = string_eval(level["common_id"], properties)
+      common_name = string_eval(level["common_name"], properties)
+
+      csv << [event, shape_type, parent_id, parent_name, common_id, common_name, geometry]
+    end
+    puts "------------------------------------------------"
+  end # levels
+
+end # close csv file
