@@ -1,5 +1,5 @@
 ---
-event: Mayor
+event: 2017 Mayor Election
 levels:
 - shape_type: Country
   file: mayor_2017/json/country.geojson

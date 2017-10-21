@@ -1,5 +1,5 @@
 ---
-event: Majoritarian
+event: 2017 Local Election - Majoritarian
 levels:
 - shape_type: Country
   file: maj_2017/json/country.geojson
@@ -19,13 +19,13 @@ levels:
   parent_name: properties['Maj_ID']
   common_id: properties['Maj_ID'].to_s + "-" + properties['Precinct'].to_s
   common_name: properties['Precinct']
-- shape_type: Majoritarian Tbilisi District
+- shape_type: Tbilisi Majoritarian District
   file: maj_2017/json/maj_district_tbs.geojson
   parent_id: "999"
   parent_name: Tbilisi
   common_id: properties['Maj_ID'].to_s
   common_name: properties['Maj_ID'].to_s
-- shape_type: Majoritarian Tbilisi Precinct
+- shape_type: Tbilisi Majoritarian Precinct
   file: maj_2017/json/maj_precinct_tbs.geojson
   parent_id: properties['Maj_ID'].to_s
   parent_name: properties['Maj_ID'].to_s
