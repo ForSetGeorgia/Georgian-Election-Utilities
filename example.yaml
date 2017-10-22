@@ -1,0 +1,33 @@
+---
+event: 2017 Mayor Election
+levels:
+- shape_type: Country
+  file: mayor_2017/json/country.geojson
+  parent_id: ''
+  parent_name: ''
+  common_id: Georgia
+  common_name: Georgia
+- shape_type: District
+  file: mayor_2017/json/district.geojson
+  parent_id: Georgia
+  parent_name: Georgia
+  common_id: properties['District']
+  common_name: properties['En_Name']
+- shape_type: Precinct
+  file: mayor_2017/json/precinct.geojson
+  parent_id: properties['District']
+  parent_name: properties['En_Name']
+  common_id: properties['Precinct']
+  common_name: properties['District'].to_s + "-" + properties['Precinct'].to_s
+- shape_type: Tbilisi District
+  file: mayor_2017/json/tbs_district.geojson
+  parent_id: '999'
+  parent_name: Tbilisi
+  common_id: properties['District']
+  common_name: properties['En_Name']
+- shape_type: Tbilisi Precinct
+  file: mayor_2017/json/tbs_precinct.geojson
+  parent_id: properties['District']
+  parent_name: properties['En_Name']
+  common_id: properties['Precinct']
+  common_name: properties['District'].to_s + "-" + properties['Precinct'].to_s
