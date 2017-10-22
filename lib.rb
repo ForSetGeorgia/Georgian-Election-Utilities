@@ -58,14 +58,14 @@ end
 def simplify_shapefiles(path_to_shapefiles, percent)
   shapefile = Dir.glob(path_to_shapefiles + '*.shp')[0]
   path = base_path(path_to_shapefiles)
-  `mapshaper #{shapefile} auto-snap -simplify keep-shapes #{percent}% -o force #{path + "/" + File.basename(shapefile, '.shp') + "_simplified.shp"}`
+  `mapshaper #{shapefile} auto-snap -simplify keep-shapes #{percent}% -proj -from epsg:3857 webmercator -o force #{path + "/" + File.basename(shapefile, '.shp') + "_simplified.shp"}`
   copy_nonsimplified_files(path_to_shapefiles)
 end
 
 def shape2json(path_to_shapefiles)
   path = base_path(path_to_shapefiles)
   bname = base_name(path_to_shapefiles)
-  `ogr2ogr -f GeoJSON -t_srs crs:84 #{path + "/" + bname}.geojson #{path + "/" + bname + ".shp"}`
+  `ogr2ogr -f "GeoJSON" -t_srs EPSG:3857 #{path + "/" + bname}.geojson #{path + "/" + bname + ".shp"}`
 end
 
 def string_eval(string, properties)
