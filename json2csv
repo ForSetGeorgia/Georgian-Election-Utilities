@@ -19,7 +19,7 @@ event = election["event"]
 levels = election["levels"]
 
 # initiate export csv file
-CSV.open(output_filename, 'wb', { :col_sep => "\t" }) do |csv|
+CSV.open(output_filename, 'wb', { :col_sep => "\t", :force_quotes => true }) do |csv|
 
   # add header
   csv << %w(event	shape_type parent_id	parent_name	common_id	common_name	geometry)
